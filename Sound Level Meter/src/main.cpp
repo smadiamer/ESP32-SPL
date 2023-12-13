@@ -81,19 +81,19 @@ void setup()
 
 void loop()
 {
-    const int sensorValue = analogRead(analogPin); // szenzorról beolvasott adat
-    const int rmsAnalog = sensorValue*sensorValue; // adat négyzetre emelése
-    total -= readings[indexB];                     // legrégebbi elem törlése
-    total += rmsAnalog;                            // legújabb elem hozzáadása
-    readings[indexB] = rmsAnalog;                  // legújabb elem tárolása tömbben
-    indexB = (indexB + 1) % numReadings;           // következő elemre mutatás, 0-ra áll ha eléri a végét
-    const float averageAnalog = sqrt(total/numReadings); // nágyzetes közép számítása
+    const int sensorValue = analogRead(analogPin); // reading analog value of sensor
+    const int rmsAnalog = sensorValue*sensorValue; // squaring each read value
+    total -= readings[indexB];                     // remove oldest value
+    total += rmsAnalog;                            // add new value
+    readings[indexB] = rmsAnalog;                  // index the new value
+    indexB = (indexB + 1) % numReadings;           // index to next value, wrapping around when necessary
+    const float averageAnalog = sqrt(total/numReadings); // calculating moving average with RMS
 
-    const float outputVoltage = (averageAnalog *(3.3/4096));
+    const float outputVoltage = (averageAnalog *(3.3/4096)); // calculate output voltage
     
     const float soundPressure = ((outputVoltage)/(sensitivity*gain40));  // change the gain if it is connected to another pin
 
-    if (soundPressure == 0)
+    if (soundPressure == 0)  // setting the minimum threshold the microphone can detect at each gain
     {
       soundLevel = 34.83832; // 60dB gain = 15.53832  50dB gain = 25.18832   40dB gain = 34.83832
     } else
