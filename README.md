@@ -8,3 +8,9 @@ Done the coding using VSC with PlatformIO build tool to install
 arduino libraries faster and connect to the microcontroller, also
 it makes the project more transparent. I'm using Arduino language which is
 an extension for C++ language.
+
+Used arduino libraries: 
+- WiFi
+- SSD1306
+- ThingSpeak
+- Wire
