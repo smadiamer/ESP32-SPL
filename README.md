@@ -11,6 +11,7 @@ an extension for C++ language.
 
 Used arduino libraries: 
 - WiFi
-- SSD1306
-- ThingSpeak
-- Wire
+- Thingpulse/ESP8266 and ESP32 OLED driver for SSD1306 displays
+- Mathworks/ThingSpeak
+- Adafruit/Adafruit BusIO
+- Knolleary/PubSubClient
